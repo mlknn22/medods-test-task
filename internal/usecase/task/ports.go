@@ -22,14 +22,25 @@ type Usecase interface {
 	List(ctx context.Context) ([]taskdomain.Task, error)
 }
 
+
+type ScheduleInput struct {
+	Type       taskdomain.ScheduleType
+	Interval   *int
+	DayOfMonth *int
+	Dates      []string
+	Parity     *taskdomain.ParityType
+}
+
 type CreateInput struct {
 	Title       string
 	Description string
 	Status      taskdomain.Status
+	Schedule    *ScheduleInput
 }
 
 type UpdateInput struct {
 	Title       string
 	Description string
 	Status      taskdomain.Status
+	Schedule    *ScheduleInput
 }
